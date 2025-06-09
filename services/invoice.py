@@ -39,7 +39,7 @@ class Invoice:
               """
          else:
              vehicle_info = "\n No vehicle-specific details found.\n"
-         total_cost=f""""
+         total_cost=f"""
          Rent: {self.rental.vehicle.rent}
          Days: {self.days}
          ----------------------------------------------------
