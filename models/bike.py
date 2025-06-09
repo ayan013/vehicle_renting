@@ -8,4 +8,5 @@ class Bike(Vehicle):
         self.mileage = mileage
 
     def __str__(self):
-        return f"Brand : {self.brand}\n CC : {self.cc}\n Mileage(Aprrox): {self.mileage}"
+        parent_info = super().__str__()
+        return f"{parent_info}\nBrand : {self.brand}\n CC : {self.cc}\n Mileage(Aprrox): {self.mileage}"
