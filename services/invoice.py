@@ -1,6 +1,8 @@
 from datetime import datetime
 from uuid import uuid4
 from models.rent_details import Rent_Details
+from models.car import Car
+from models.bike import Bike
 
 
 class Invoice:
@@ -24,17 +26,19 @@ class Invoice:
          ---------------------------------------------------
          Vehicle Type: {self.rental.vehicle.type}
          """
-         if self.rental.vehicle.type == "Car":
+         if isinstance(self.rental.vehicle, Car):
              vehicle_info = f"""
-                Brand: {self.rental.car.brand}
-                Fuel: {self.rental.car.fuel_type}
-                Seating Capacity: {self.rental.car.seater}             
+              Brand: {self.rental.car.brand}
+              Fuel: {self.rental.car.fuel_type}
+              Seating Capacity: {self.rental.car.seater}             
+              """
+         elif isinstance(self.rental.vehicle, Bike):
+              vehicle_info=f"""
+              Brand: {self.rental.bike.brand} - {self.rental.bike.cc}
+              Mileage: {self.rental.bike.mileage}
               """
          else:
-              vehicle_info=f"""
-                Brand: {self.rental.bike.brand} - {self.rental.bike.cc}
-                Mileage: {self.rental.bike.mileage}
-              """
+             vehicle_info = "\n No vehicle-specific details found.\n"
          total_cost=f""""
          Rent: {self.rental.vehicle.rent}
          Days: {self.days}
