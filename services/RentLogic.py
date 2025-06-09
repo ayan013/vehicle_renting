@@ -1,5 +1,4 @@
 from models.vehicle import Vehicle
-from models.client import Client
 
 class RentLogic:
     def __init__(self,tax:float,discount:int):
@@ -14,6 +13,12 @@ class RentLogic:
 
     def add_bike(self,bike):
         return self.bikes.append(bike)
+
+    def show_cars(self):
+        return self.cars
+
+    def show_bikes(self):
+        return self.bikes
 
     def total_cost(self,vehicle: Vehicle,days: int) -> float:
         subtotal = vehicle.calculate_cost(days)
