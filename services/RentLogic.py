@@ -1,5 +1,5 @@
 from models.vehicle import Vehicle
-
+from models.client import Client
 
 class RentLogic:
     def __init__(self,tax:float,discount:int):
