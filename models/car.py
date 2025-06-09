@@ -9,5 +9,6 @@ class Car(Vehicle):
         self.seater = seater
 
     def __str__(self):
-        return f"Brand: {self.brand}\n Fuel - {self.fuel_type}\n Ideal for {self.seater} people\n"
+        parent_info=super().__str__()
+        return f"{parent_info}\nBrand: {self.brand}\n Fuel - {self.fuel_type}\n Ideal for {self.seater} people\n"
 
