@@ -17,9 +17,11 @@ class RentLogic:
 
     def total_cost(self,vehicle: Vehicle,days: int) -> float:
         subtotal = vehicle.calculate_cost(days)
-        adding_tax = subtotal * (1 + self.tax)
-        final_total = adding_tax - self.discount
-        return final_total
+        adding_tax = subtotal * (100 * self.tax)
+        final_cost = adding_tax - self.discount
+        return final_cost
+
+
 
 
 
