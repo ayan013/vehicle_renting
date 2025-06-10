@@ -1,0 +1,29 @@
+Basic features:
+
+1) cli file created for separating user interface from main.py ✅
+2) Car/Bike availability status update. ✅
+3) Validation on input like email,contact.
+4) Full Admin panel for record insertion,deletion,updation.
+5) De-coupling.
+
+Intermediate:
+
+1) Use sqlalchemy as ORM and postgresql for implementing database.
+2) implement FastAPI and create endpoints.
+3) Use pydantic for input validation.
+4) Testing with unittest/pytest.
+5) Create frontend with React/HTML/CSS.
+
+Advance:
+
+1) Set up server environment.
+2) Use Nginx with Gunicorn with uvicorn as worker
+3) Containerization.
+3) Use gitlab/github pipeline for CI/CD
+
+
+Future Scope:
+
+1) Deploy in Kubernetes cluster
+2) Deploy on cloud like AWS,Azure etc.
+3) Performance Optimization
