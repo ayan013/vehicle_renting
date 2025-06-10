@@ -1,0 +1,26 @@
+PROJECT STRUCTURE:-
+
+
+vehicle_renting/
+│
+├── models/
+│   ├── vehicle.py
+│   ├── car.py
+│   ├── bike.py
+│   ├── client.py
+│   ├── rent_details.py
+│
+├── services/
+│   ├── rent_logic.py          ← Pricing logic only
+│   ├── inventory_manager.py   ← Store/search vehicles
+│   ├── invoice_service.py     ← High-level invoice generator
+│
+├── utils/
+│   ├── invoice_formatter.py   ← f-string logic for output
+│
+├── cli/
+│   ├── cli.py                 ← Menu, input, and print
+│
+├── tests/
+│   ├── test_rent_logic.py
+│   ├── test_invoice.py
