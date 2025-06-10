@@ -1,22 +1,21 @@
-from models.vehicle import Vehicle
 from models.car import Car
 from models.bike import Bike
-from models.client import Client
 from services.RentLogic import RentLogic
-from services.invoice import Invoice
-from models.rent_details import Rent_Details
+from repositories.Inventory import Inventory
+from cli.cli import rent_vehicle
 
 rent_logic=RentLogic(0.20,100)
+inventory=Inventory()
 
-rent_logic.add_car(Car(101,"car",500,True,"Maruti Wagon R","Petrol",5))
-rent_logic.add_car(Car(102,"car",700,True,"Hyundai i10","Petrol",5))
-rent_logic.add_car(Car(103,"car",1000,True,"Maruti Ertiga","Diesel",7))
-rent_logic.add_car(Car(104,"car",1200,True,"Innova","Petrol",8))
+inventory.add_car(Car(101,"car",500,True,"Maruti Wagon R","Petrol",5))
+inventory.add_car(Car(102,"car",700,True,"Hyundai i10","Petrol",5))
+inventory.add_car(Car(103,"car",1000,False,"Maruti Ertiga","Diesel",7))
+inventory.add_car(Car(104,"car",1200,True,"Innova","Petrol",8))
 
-rent_logic.add_bike(Bike(201,"bike",200,True,"Super Splendor",120,60))
-rent_logic.add_bike(Bike(202,"bike",300,True,"Pulser",140,50))
-rent_logic.add_bike(Bike(203,"bike",400,True,"KTM",220,45))
-rent_logic.add_bike(Bike(204,"bike",500,True,"Royal Enfield",350,35))
+inventory.add_bike(Bike(201,"bike",200,True,"Super Splendor",120,60))
+inventory.add_bike(Bike(202,"bike",300,False,"Pulser",140,50))
+inventory.add_bike(Bike(203,"bike",400,True,"KTM",220,45))
+inventory.add_bike(Bike(204,"bike",500,True,"Royal Enfield",350,35))
 
 while True:
     print("----Menu----")
@@ -26,46 +25,14 @@ while True:
     choice = input("Enter your choice 1 or 2 or 3: ")
     try:
         if choice == "1":
-            cars=rent_logic.show_cars()
-            for car in cars:
-                print(f"Id: {car.id} - {car.brand} - {car.rent} per day")
-            car_choice = int(input("Tell me the ID of the car you want to rent: "))
-            days=int(input("For how many days: "))
-            selected_car = None
-            for car in cars:
-                if car.id == car_choice:
-                    selected_car = car
-                    break
-            name = input("Enter your Name: ")
-            email = input("Enter your email: ")
-            contact = int(input("Enter your mobile number: "))
-            client = Client(name,email,contact)
-            rental = Rent_Details(client=client,car=selected_car,bike=None,rent_logic=rent_logic)
-            invoice=Invoice(rental,days)
-            print(invoice.generate_invoice())
+            rent_vehicle("car",inventory,rent_logic)
         elif choice == "2":
-            bikes = rent_logic.show_bikes()
-            for bike in bikes:
-                print(f"Id: {bike.id} - {bike.brand} - {bike.rent} per day")
-            bike_choice = int(input("Tell me the ID of the bike you want to rent: "))
-            days = int(input("For how many days: "))
-            selected_bike=None
-            for bike in bikes:
-                if bike.id == bike_choice:
-                    selected_bike = bike
-                    break
-
-            name = input("Enter your Name: ")
-            email = input("Enter your email: ")
-            contact = int(input("Enter your mobile number: "))
-            client = Client(name, email, contact)
-            rental = Rent_Details(client=client, car=None , bike=selected_bike,
-                                  rent_logic=rent_logic)
-            invoice = Invoice(rental, days)
-            print(invoice.generate_invoice())
-        else:
+            rent_vehicle("bike",inventory,rent_logic)
+        elif choice == "3":
             print("Exiting")
             break
+        else:
+            print("You have entered wrong value")
 
     except ValueError as e:
         print(e)
