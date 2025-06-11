@@ -1,6 +1,7 @@
 from sqlalchemy import Integer, String, Boolean, Column
 from db.database import Base
 
+# SQLAlchemy Car table
 class CarModel(Base):
     __tablename__ = "cars"
 
