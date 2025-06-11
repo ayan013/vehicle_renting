@@ -1,5 +1,5 @@
-PROJECT STRUCTURE:-
 
+PROJECT STRUCTURE:-
 
 vehicle_renting/
 │
@@ -24,3 +24,12 @@ vehicle_renting/
 ├── tests/
 │   ├── test_rent_logic.py
 │   ├── test_invoice.py
+│
+├── db/
+│   ├── database.py          ← DB engine + session setup
+│   ├── init_db.py           ← Creates tables
+│   ├── models/
+│   │   └── car_model.py     ← SQLAlchemy model
+│   ├── repository.py        ← Add, fetch, update cars
+│
+├──rental.db
